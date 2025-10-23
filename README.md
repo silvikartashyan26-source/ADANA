@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<title>Ադանա Թրանսս</title>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body { font-family: Arial,sans-serif; background:#F0E68C; color:#008000; text-align:center; padding:20px; line-height:1.6; margin:0; }
+h1 { font-size:60px; font-weight:bold; font-family:'Lobster',cursive; background:linear-gradient(45deg,#008000,#DAA520); -webkit-background-clip:text; -webkit-text-fill-color:transparent; -webkit-text-stroke:1px #006400; margin-bottom:20px; position:relative; }
+h2 { font-size:36px; margin-bottom:20px; }
+h3 { font-size:48px; margin:20px 0; }
+
+.service-cards { display:flex; justify-content:center; gap:20px; margin:20px 0; flex-wrap:wrap; }
+.card { flex:1; max-width:220px; background:white; border:2px solid #008000; border-radius:12px; padding:20px; text-align:center; box-shadow:0 4px 8px rgba(0,0,0,0.1); cursor:pointer; transition:transform 0.2s, background 0.3s; }
+.card:hover { background:#f0fff0; transform:translateY(-5px); }
+.card h3 { font-size:22px; margin-bottom:15px; color:#006400; }
+.card .emoji { font-size:40px; }
+
+.slideshow-container { max-width:600px; margin:0 auto 20px; border-radius:12px; overflow:hidden; position:relative; }
+.slides { display:none; width:100%; height:350px; object-fit:cover; border-radius:12px; }
+
+form { background:white; padding:20px; border-radius:12px; max-width:400px; margin:20px auto; box-shadow:0 4px 8px rgba(0,0,0,0.2); }
+input, select, button { width:90%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid #008000; font-size:16px; height:45px; box-sizing:border-box; }
+button { background:#008000; color:white; cursor:pointer; }
+button:hover { background:#006400; }
+
+.back-button { display:inline-block; margin-top:2em; padding:10px 20px; border-radius:8px; border:1px solid #008000; background:#008000; color:white; cursor:pointer; font-size:18px; min-width:100px; }
+.back-button:hover { background:#f0f0f0; color:#006400; }
+
+.checkbox-box { width:90%; height:45px; padding:0 10px; margin:8px auto; border-radius:8px; border:1px solid #008000; font-size:16px; background:#fff; display:flex; align-items:center; box-sizing:border-box; }
+.checkbox-box label { cursor:pointer; display:flex; align-items:center; gap:10px; width:100%; }
+.checkbox-box input[type="checkbox"], .checkbox-box input[type="radio"] { width:18px; height:18px; cursor:pointer; }
+
+table { border-collapse:collapse; width:90%; margin:20px auto; background:white; box-shadow:0 4px 8px rgba(0,0,0,0.1); border-radius:12px; overflow:hidden; }
+th, td { border:1px solid #008000; padding:10px; font-size:16px; }
+th { background:#008000; color:white; }
+tr:nth-child(even) { background:#f9fff9; }
+
+#searchInput { width:200px; padding:6px; margin-bottom:10px; border-radius:6px; border:1px solid #008000; float:right; }
+
+@media (max-width:640px){
+  h1{font-size:36px;}
+  .slides{height:200px;}
+  .card{max-width:160px;padding:12px;}
+  #searchInput{width:120px; float:none; margin:0 auto 10px; display:block;}
+}
+</style>
+</head>
+<body>
+
+<!-- START PAGE -->
+<div id="startPage" class="page">
+  <button class="data-btn" onclick="openData()">📋 Տվյալներ</button>
+  <h1>Ադանա Թրանսս</h1>
+  <h2>Մենք Ձեր վստահելի ուղեկիցն ենք ճանապարհին 🛤️</h2>
+  <div class="service-cards">
+    <div class="card" onclick="openCountry('georgia')"><h3>Վրաստան</h3><div class="emoji">🌏</div></div>
+    <div class="card" onclick="openCountry('russia')"><h3>Ռուսաստան</h3><div class="emoji">🇷🇺</div></div>
+    <div class="card" onclick="openCountry('armenia')"><h3>Հայաստանի տեսարժան վայրեր</h3><div class="emoji">🏞️</div></div>
+  </div>
+</div>
+
+<!-- DATA PAGE -->
+<div id="dataPage" class="page" style="display:none;">
+  <h1>Լրացված տվյալներ 📋</h1>
+  <input type="text" id="searchInput" placeholder="Որոնել անունով...">
+  <div id="dataTable">Տվյալները այստեղ կհայտնվեն միայն, եթե լրացվել են։</div>
+  <button class="back-button" onclick="goStart()">↩ Գլխավոր էջ</button>
+</div>
+
+<!-- GEORGIA PAGE -->
+<div id="georgiaPage" class="page" style="display:none;">
+  <h1>Դեպի Վրաստան</h1>
+  <div class="slideshow-container" id="georgiaSlides">
+    <img class="slides" src="https://www.advantour.com/img/georgia/images/tbilisi.jpg">
+    <img class="slides" src="https://www.georgianholidays.com/storage/lDkXgQTVTu7iX1TDm9I9o78BjKY0VvJ00gnpBzSH.jpg">
+  </div>
+  <div class="service-cards">
+    <div class="card" onclick="openForm('passenger','georgia')"><h3>Ուղևորափոխադրում</h3><div class="emoji">👥</div></div>
+    <div class="card" onclick="openForm('cargo','georgia')"><h3>Բեռնափոխադրում</h3><div class="emoji">🧳</div></div>
+  </div>
+  <button class="back-button" onclick="goStart()">↩ Գլխավոր էջ</button>
+</div>
+
+<!-- RUSSIA PAGE -->
+<div id="russiaPage" class="page" style="display:none;">
+  <h1>Դեպի Ռուսաստան</h1>
+  <div class="slideshow-container" id="russiaSlides">
+    <img class="slides" src="https://myvisa.am/storage/countries/June2023/dlRt14t55XPRsPscs0tQ.jpg">
+    <img class="slides" src="https://s13.stc.all.kpcdn.net/russia/wp-content/uploads/2020/10/zheleznovodsk-1220.jpg">
+  </div>
+  <div class="service-cards">
+    <div class="card" onclick="openForm('passenger','russia')"><h3>Ուղևորափոխադրում</h3><div class="emoji">👥</div></div>
+    <div class="card" onclick="openForm('cargo','russia')"><h3>Բեռնափոխադրում</h3><div class="emoji">🧳</div></div>
+  </div>
+  <button class="back-button" onclick="goStart()">↩ Գլխավոր էջ</button>
+</div>
+
+<!-- ARMENIA PAGE -->
+<div id="armeniaPage" class="page" style="display:none;">
+  <h1>Հայաստանի տեսարժան վայրեր</h1>
+  <div class="slideshow-container" id="armeniaSlides">
+    <img class="slides" src="https://www.aravot.am/wp-content/uploads/2018/07/hayastan.jpg">
+    <img class="slides" src="https://upload.wikimedia.org/wikipedia/commons/7/77/Sevanavanq5.jpg">
+  </div>
+  <div class="service-cards">
+    <div class="card" onclick="openForm('passenger','armenia')"><h3>Ուղևորափոխադրում</h3><div class="emoji">👥</div></div>
+  </div>
+  <button class="back-button" onclick="goStart()">↩ Գլխավոր էջ</button>
+</div>
+
+<!-- PASSENGER FORM -->
+<div id="formPassenger" class="page" style="display:none;">
+  <h1>Ուղևորափոխադրում 👥</h1>
+  <p><b>Մուտքագրիր տվյալները և ընտրիր օրը</b></p>
+  <form id="passengerForm" method="POST" action="https://api.sheetbest.com/sheets/bb7cb441-dd78-437b-860a-cfdcb320e2ac" onsubmit="return showThankYou(event)">
+    <input type="text" name="Անուն" placeholder="Անուն" required>
+    <input type="tel" name="Հեռախոս" placeholder="Հեռախոս" required>
+    <div class="checkbox-box"><label><input type="checkbox" name="Գիդ"> Ավելացնել գիդ</label></div>
+    <div class="checkbox-box"><label><input type="radio" name="Տիպ" value="Ընտանիք" required> Ընտանիք</label></div>
+    <div class="checkbox-box"><label><input type="radio" name="Տիպ" value="Անձ" required> Անձ</label></div>
+    <select name="Օր" id="selectDay" required></select>
+    <select name="Ամիս" required>
+      <option value="Հունվար">Հունվար</option><option value="Փետրվար">Փետրվար</option>
+      <option value="Մարտ">Մարտ</option><option value="Ապրիլ">Ապրիլ</option>
+    </select>
+    <select name="Տարի" required><option value="2025">2025</option><option value="2026">2026</option></select>
+    <button type="submit">Ուղարկել</button>
+  </form>
+  <button class="back-button" onclick="goStart()">↩ Գլխավոր էջ</button>
+</div>
+
+<!-- CARGO FORM -->
+<div id="formCargo" class="page" style="display:none;">
+  <h1>Բեռնափոխադրում 🧳</h1>
+  <p><b>Մուտքագրիր տվյալները և ընտրիր օրը</b></p>
+  <form id="cargoForm" method="POST" action="https://api.sheetbest.com/sheets/bb7cb441-dd78-437b-860a-cfdcb320e2ac" onsubmit="return showThankYou(event)">
+    <input type="text" name="Անուն" placeholder="Անուն" required>
+    <input type="tel" name="Հեռախոս" placeholder="Հեռախոս" required>
+    <input type="number" name="Կիլոգրամ" placeholder="Քաշ (կգ)" required>
+    <select name="Օր" id="selectDayCargo" required></select>
+    <select name="Ամիս" required>
+      <option value="Հունվար">Հունվար</option><option value="Փետրվար">Փետրվար</option>
+      <option value="Մարտ">Մարտ</option><option value="Ապրիլ">Ապրիլ</option>
+    </select>
+    <select name="Տարի" required><option value="2025">2025</option><option value="2026">2026</option></select>
+    <button type="submit">Ուղարկել</button>
+  </form>
+  <button class="back-button" onclick="goStart()">↩ Գլխավոր էջ</button>
+</div>
+
+<!-- THANK YOU PAGE -->
+<div id="thankYouPage" class="page" style="display:none;">
+  <h1>Շնորհակալություն! 🎉</h1>
+  <p>Ձեր տվյալները հաջողությամբ ուղարկվեցին։</p>
+  <button class="back-button" onclick="goStart()">↩ Գլխավոր էջ</button>
+</div>
+
+<script>
+let slideIntervals = {};
+let submittedData = JSON.parse(localStorage.getItem("adanatransData") || "[]");
+
+function hideAllPages(){ document.querySelectorAll('.page').forEach(p=>p.style.display='none'); }
+function goStart(){ hideAllPages(); document.getElementById('startPage').style.display='block'; }
+
+function openCountry(country){ hideAllPages(); const el=document.getElementById(country+'Page'); if(el) el.style.display='block'; slideshow(country+'Slides'); }
+
+function openForm(type,country){
+  hideAllPages();
+  const select = (type==='passenger') ? document.getElementById('selectDay') : document.getElementById('selectDayCargo');
+  select.innerHTML = "<option value=''>Ընտրեք օրը</option>";
+  if(country==='georgia') ['8','18','28'].forEach(d=> select.innerHTML += `<option value="${d}">${d}</option>`);
+  if(country==='russia') ['1','11','21'].forEach(d=> select.innerHTML += `<option value="${d}">${d}</option>`);
+  if(country==='armenia') ['Ուրբաթ','Շաբաթ','Կիրակի'].forEach(d=> select.innerHTML += `<option value="${d}">${d}</option>`);
+  if(type==='passenger') document.getElementById('formPassenger').style.display='block';
+  if(type==='cargo') document.getElementById('formCargo').style.display='block';
+}
+
+function showThankYou(event){
+  event.preventDefault();
+  const form = event.target;
+  const formData = Object.fromEntries(new FormData(form).entries());
+  submittedData.push(formData);
+  localStorage.setItem("adanatransData", JSON.stringify(submittedData));
+  
+  fetch(form.action,{method:'POST',body:new FormData(form)})
+  .then(res=>{
+    form.reset();
+    hideAllPages();
+    document.getElementById('thankYouPage').style.display='block';
+  })
+  .catch(err=>{ alert('Կներեք, տվյալները ուղարկված չեն։'); console.error(err); });
+}
+
+function openData(){
+  hideAllPages();
+  document.getElementById('dataPage').style.display='block';
+  const table = document.getElementById('dataTable');
+
+  function renderTable(data){
+    if(data.length===0){ table.innerHTML="Դեռ լրացված տվյալներ չկան։"; return; }
+    let html = "<table><tr><th>Անուն</th><th>Հեռախոս</th><th>Օր</th><th>Ամիս</th><th>Տարի</th></tr>";
+    data.forEach(d=>{
+      html += `<tr>
+        <td>${d["Անուն"]||""}</td>
+        <td>${d["Հեռախոս"]||""}</td>
+        <td>${d["Օր"]||""}</td>
+        <td>${d["Ամիս"]||""}</td>
+        <td>${d["Տարի"]||""}</td>
+      </tr>`;
+    });
+    html += "</table>";
+    table.innerHTML = html;
+  }
+
+  renderTable(submittedData);
+
+  const searchInput = document.getElementById('searchInput');
+  searchInput.value="";
+  searchInput.oninput=function(){
+    const term = this.value.trim().toLowerCase();
+    const filtered = submittedData.filter(d=>(d["Անուն"]||"").toLowerCase().includes(term));
+    renderTable(filtered);
+  };
+}
+
+function slideshow(containerId){
+  clearInterval(slideIntervals[containerId]);
+  const slides = document.querySelectorAll(`#${containerId} .slides`);
+  let index = 0;
+  if(slides.length === 0) return;
+  slides.forEach(s => s.style.display = 'none');
+  slides[index].style.display = 'block';
+
+  slideIntervals[containerId] = setInterval(() => {
+    slides[index].style.display = 'none';
+    index = (index + 1) % slides.length;
+    slides[index].style.display = 'block';
+  }, 3000);
+}
+
+// Ավտոմատ սլայդերների սկիզբ
+window.addEventListener('load', () => {
+  ['georgiaSlides','russiaSlides','armeniaSlides'].forEach(id => slideshow(id));
+});
+</script>
+
+</body>
+</html>
